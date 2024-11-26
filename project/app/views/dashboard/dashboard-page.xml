@@ -1,0 +1,49 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Bitstack" class="bg-blue-600 text-white">
+        <NavigationButton visibility="collapsed"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="card">
+                <Label text="Votre portefeuille" class="text-gray-500"/>
+                <Label text="{{ balance }}" class="text-3xl font-bold"/>
+                <Label text="{{ btcBalance }}" class="text-gray-500"/>
+            </StackLayout>
+
+            <GridLayout columns="*, *" rows="auto" class="mt-4">
+                <Button text="Acheter" tap="{{ onBuy }}" class="action-button m-2" col="0"/>
+                <Button text="Vendre" tap="{{ onSell }}" class="action-button m-2" col="1"/>
+            </GridLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Épargne automatique" class="text-xl font-bold"/>
+                <Switch checked="{{ autoSavingEnabled }}" class="mt-2"/>
+                <Label text="Arrondir mes achats au dollar supérieur" class="text-gray-500"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Achat récurrent" class="text-xl font-bold"/>
+                <TextField hint="Montant en CAD" keyboardType="number" text="{{ recurringAmount }}" class="mt-2"/>
+                <ListPicker items="{{ ['Quotidien', 'Hebdomadaire', 'Mensuel'] }}" selectedIndex="{{ recurringFrequencyIndex }}" class="mt-2"/>
+                <Button text="Configurer" tap="{{ setupRecurringPurchase }}" class="action-button mt-2"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Transactions récentes" class="text-xl font-bold"/>
+                <ListView items="{{ transactions }}" class="mt-2" height="300">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" rows="auto, auto" class="p-2">
+                            <Label text="{{ description }}" col="0" row="0"/>
+                            <Label text="{{ date, date }}" col="0" row="1" class="text-gray-500 text-sm"/>
+                            <StackLayout col="1" rowSpan="2" verticalAlignment="center">
+                                <Label text="{{ (type === 'purchase' || type === 'roundup' ? '+' : '-') + btcAmount + ' BTC' }}" class="text-right"/>
+                                <Label text="{{ amount + ' CAD' }}" class="text-right text-gray-500"/>
+                            </StackLayout>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
