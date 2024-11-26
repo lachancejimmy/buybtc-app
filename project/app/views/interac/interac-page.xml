@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Virement Interac" class="bg-blue-600 text-white">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="card">
+                <Label text="Envoyer des fonds" class="text-xl font-bold mb-4"/>
+                <TextField hint="Montant en CAD" text="{{ amount }}" keyboardType="number" class="input mb-2"/>
+                <TextField hint="Courriel du destinataire" text="{{ recipientEmail }}" keyboardType="email" class="input mb-2"/>
+                <TextField hint="Message (optionnel)" text="{{ message }}" class="input mb-4"/>
+                <Button text="Envoyer" tap="{{ sendInterac }}" class="action-button"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Historique des virements" class="text-xl font-bold mb-4"/>
+                <ListView items="{{ transfers }}" height="300">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" rows="auto, auto" class="p-2">
+                            <Label text="{{ recipientEmail }}" col="0" row="0"/>
+                            <Label text="{{ date, date }}" col="0" row="1" class="text-gray-500"/>
+                            <Label text="{{ amount + ' CAD' }}" col="1" rowSpan="2" class="text-right"/>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

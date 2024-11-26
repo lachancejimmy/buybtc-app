@@ -1,0 +1,40 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Vendre du Bitcoin" class="bg-blue-600 text-white">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="card">
+                <Label text="Bitcoin disponible" class="text-gray-500"/>
+                <Label text="{{ btcBalance }}" class="text-2xl font-bold"/>
+                <Label text="{{ cadBalance }}" class="text-gray-500"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Montant à vendre" class="text-xl font-bold mb-4"/>
+                <TextField hint="Montant en BTC" 
+                          text="{{ amount }}" 
+                          keyboardType="number" 
+                          class="input mb-2"/>
+                <Label text="{{ cadAmount }}" class="text-gray-500 mb-4"/>
+                
+                <Button text="25%" tap="{{ setPercentage }}" class="mb-2" data-percentage="25"/>
+                <Button text="50%" tap="{{ setPercentage }}" class="mb-2" data-percentage="50"/>
+                <Button text="100%" tap="{{ setPercentage }}" class="mb-2" data-percentage="100"/>
+                
+                <Button text="Vendre" tap="{{ sellBitcoin }}" class="action-button" isEnabled="{{ amount > 0 }}"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Récapitulatif" class="text-xl font-bold mb-4"/>
+                <GridLayout rows="auto, auto" columns="*, auto">
+                    <Label text="Bitcoin" row="0" col="0"/>
+                    <Label text="{{ amount + ' BTC' }}" row="0" col="1"/>
+                    <Label text="Montant" row="1" col="0"/>
+                    <Label text="{{ cadAmount }}" row="1" col="1"/>
+                </GridLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
