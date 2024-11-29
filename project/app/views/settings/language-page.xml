@@ -1,0 +1,21 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ 'settings.language' | translate }}" class="bg-blue-600 text-white">
+        <NavigationButton text="{{ 'common.back' | translate }}"/>
+    </ActionBar>
+
+    <StackLayout class="p-4">
+        <StackLayout class="card">
+            <Label text="{{ 'settings.selectLanguage' | translate }}" class="text-xl font-bold mb-4"/>
+            
+            <GridLayout rows="auto, auto" columns="*, auto" class="mb-2">
+                <Label text="Français" row="0" col="0"/>
+                <Switch checked="{{ isFrench }}" row="0" col="1" tap="{{ toggleLanguage }}"/>
+            </GridLayout>
+            
+            <GridLayout rows="auto, auto" columns="*, auto">
+                <Label text="English" row="0" col="0"/>
+                <Switch checked="{{ !isFrench }}" row="0" col="1" tap="{{ toggleLanguage }}"/>
+            </GridLayout>
+        </StackLayout>
+    </StackLayout>
+</Page>

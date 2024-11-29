@@ -1,0 +1,28 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Restaurer le portefeuille" class="action-bar">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="card">
+                <Label text="Phrase de récupération" class="text-xl font-bold mb-4"/>
+                <TextView hint="Entrez vos 12 mots séparés par des espaces" 
+                         text="{{ mnemonic }}" 
+                         class="input mb-4"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Mot de passe" class="text-xl font-bold mb-4"/>
+                <TextField hint="Entrez votre mot de passe" 
+                          text="{{ password }}" 
+                          secure="true" 
+                          class="input mb-4"/>
+                <Button text="Restaurer" 
+                        tap="{{ restoreWallet }}" 
+                        class="btn-primary" 
+                        isEnabled="{{ canRestore }}"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

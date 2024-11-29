@@ -1,0 +1,50 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Envoyer des Bitcoin" class="action-bar">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="form-group">
+                <Label text="Adresse Bitcoin" class="label"/>
+                <TextField text="{{ address }}" 
+                          hint="Entrez l'adresse Bitcoin" 
+                          class="input"
+                          autocorrect="false"
+                          autocapitalizationType="none"/>
+                <Label text="{{ addressError }}" 
+                       class="error-text" 
+                       visibility="{{ addressError ? 'visible' : 'collapsed' }}"/>
+            </StackLayout>
+
+            <StackLayout class="form-group mt-4">
+                <Label text="Montant (BTC)" class="label"/>
+                <TextField text="{{ amount }}" 
+                          hint="0.00000000" 
+                          keyboardType="number" 
+                          class="input"/>
+                <Label text="{{ amountInCad }}" class="text-muted"/>
+                <Label text="{{ amountError }}" 
+                       class="error-text" 
+                       visibility="{{ amountError ? 'visible' : 'collapsed' }}"/>
+            </StackLayout>
+
+            <StackLayout class="fee-selector mt-4">
+                <Label text="Frais de transaction" class="label"/>
+                <SegmentedBar selectedIndex="{{ selectedFeeIndex }}" class="mt-2">
+                    <SegmentedBar.items>
+                        <SegmentedBarItem title="Lent"/>
+                        <SegmentedBarItem title="Normal"/>
+                        <SegmentedBarItem title="Rapide"/>
+                    </SegmentedBar.items>
+                </SegmentedBar>
+                <Label text="{{ estimatedFee }}" class="text-muted mt-2"/>
+            </StackLayout>
+
+            <Button text="Envoyer" 
+                    tap="{{ send }}" 
+                    class="btn-primary mt-4" 
+                    isEnabled="{{ isValid }}"/>
+        </StackLayout>
+    </ScrollView>
+</Page>

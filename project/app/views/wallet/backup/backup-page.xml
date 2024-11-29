@@ -1,0 +1,59 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Sauvegarde du portefeuille" class="action-bar">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Warning Card -->
+            <StackLayout class="card bg-yellow-50">
+                <Label text="⚠️ Important" class="text-xl font-bold mb-2"/>
+                <Label text="Votre phrase de récupération est la seule façon de restaurer votre portefeuille. Conservez-la dans un endroit sûr et ne la partagez jamais." 
+                       textWrap="true" 
+                       class="text-yellow-800"/>
+            </StackLayout>
+
+            <!-- Backup Phrase -->
+            <StackLayout class="card mt-4" visibility="{{ showMnemonic ? 'visible' : 'collapsed' }}">
+                <Label text="Phrase de récupération" class="text-xl font-bold mb-4"/>
+                <TextView text="{{ mnemonic }}" 
+                         editable="false"
+                         class="p-4 bg-gray-100 rounded"/>
+                <Button text="Copier" 
+                        tap="{{ copyMnemonic }}" 
+                        class="btn-outline mt-4"/>
+            </StackLayout>
+
+            <!-- Verification -->
+            <StackLayout class="card mt-4" visibility="{{ showVerification ? 'visible' : 'collapsed' }}">
+                <Label text="Vérification" class="text-xl font-bold mb-4"/>
+                <Label text="Entrez votre phrase de récupération pour confirmer que vous l'avez bien sauvegardée" 
+                       textWrap="true" 
+                       class="mb-4"/>
+                <TextView hint="12 mots séparés par des espaces" 
+                         text="{{ verificationPhrase }}" 
+                         class="input"/>
+                <Button text="Vérifier" 
+                        tap="{{ verifyMnemonic }}" 
+                        class="btn-primary mt-4"/>
+            </StackLayout>
+
+            <!-- Password Protection -->
+            <StackLayout class="card mt-4">
+                <Label text="Protection par mot de passe" class="text-xl font-bold mb-4"/>
+                <TextField hint="Mot de passe" 
+                          text="{{ password }}" 
+                          secure="true" 
+                          class="input mb-2"/>
+                <TextField hint="Confirmer le mot de passe" 
+                          text="{{ confirmPassword }}" 
+                          secure="true" 
+                          class="input mb-4"/>
+                <Button text="Créer la sauvegarde" 
+                        tap="{{ createBackup }}" 
+                        class="btn-primary" 
+                        isEnabled="{{ canCreateBackup }}"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

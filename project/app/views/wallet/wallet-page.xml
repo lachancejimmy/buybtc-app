@@ -1,0 +1,54 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Portefeuille" class="action-bar">
+        <NavigationButton visibility="collapsed"/>
+        <ActionItem ios.position="right" android.position="actionBar" tap="{{ onRefresh }}">
+            <Label text="&#xf021;" class="fas refresh-icon"/>
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <!-- Balance Card -->
+        <StackLayout row="0" class="balance-card p-4 m-2">
+            <Label text="Solde total" class="text-center text-white text-sm"/>
+            <Label text="{{ balance.cad | formatCurrency }}" class="text-center text-white text-3xl font-bold mt-2"/>
+            <Label text="{{ balance.btc | formatBTC }}" class="text-center text-white-transparent text-lg mt-1"/>
+            
+            <GridLayout columns="*, *" class="mt-4">
+                <Button text="Recevoir" tap="{{ onReceive }}" col="0" class="btn-white-outline m-1"/>
+                <Button text="Envoyer" tap="{{ onSend }}" col="1" class="btn-white-outline m-1"/>
+            </GridLayout>
+        </StackLayout>
+
+        <!-- Transactions List -->
+        <GridLayout row="1" rows="auto, *" class="transactions-container">
+            <Label row="0" text="Transactions" class="p-3 text-lg font-semibold"/>
+            
+            <ListView row="1" items="{{ transactions }}" class="transaction-list" separatorColor="#EEEEEE">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *, auto" rows="auto, auto" class="transaction-item p-3">
+                        <!-- Icon -->
+                        <Label col="0" rowSpan="2" 
+                               text="{{ icon }}" 
+                               class="fas transaction-icon"
+                               color="{{ type === 'receive' ? '#28a745' : '#dc3545' }}"/>
+                        
+                        <!-- Description & Date -->
+                        <StackLayout col="1">
+                            <Label text="{{ description }}" class="font-semibold"/>
+                            <Label text="{{ timestamp | formatDate }}" class="text-sm text-muted"/>
+                        </StackLayout>
+                        
+                        <!-- Amount -->
+                        <StackLayout col="2" horizontalAlignment="right">
+                            <Label text="{{ (type === 'receive' ? '+' : '-') + amount | formatBTC }}"
+                                   class="text-right font-semibold"
+                                   color="{{ type === 'receive' ? '#28a745' : '#dc3545' }}"/>
+                            <Label text="{{ amountCad | formatCurrency }}" 
+                                   class="text-right text-sm text-muted"/>
+                        </StackLayout>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </GridLayout>
+    </GridLayout>
+</Page>

@@ -1,0 +1,56 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Vérification d'identité" class="bg-blue-600 text-white">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="card">
+                <Label text="Niveau de vérification" class="text-xl font-bold mb-4"/>
+                <Label text="{{ verificationLevel }}" class="text-2xl"/>
+                <Label text="{{ verificationStatus }}" class="mt-2" color="{{ statusColor }}"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4" visibility="{{ showPersonalInfo ? 'visible' : 'collapsed' }}">
+                <Label text="Informations personnelles" class="text-xl font-bold mb-4"/>
+                
+                <TextField hint="Prénom" 
+                          text="{{ firstName }}" 
+                          class="input mb-2"/>
+                <TextField hint="Nom" 
+                          text="{{ lastName }}" 
+                          class="input mb-2"/>
+                <TextField hint="Date de naissance" 
+                          text="{{ dateOfBirth }}" 
+                          class="input mb-2"/>
+                <TextField hint="Adresse" 
+                          text="{{ address }}" 
+                          class="input mb-2"/>
+                <TextField hint="Ville" 
+                          text="{{ city }}" 
+                          class="input mb-2"/>
+                <TextField hint="Code postal" 
+                          text="{{ postalCode }}" 
+                          class="input mb-2"/>
+                
+                <Button text="Continuer" tap="{{ submitPersonalInfo }}" class="action-button mt-4"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4" visibility="{{ showDocuments ? 'visible' : 'collapsed' }}">
+                <Label text="Documents d'identité" class="text-xl font-bold mb-4"/>
+                
+                <ListPicker items="{{ documentTypes }}" 
+                           selectedIndex="{{ selectedDocumentIndex }}" 
+                           class="mb-4"/>
+                
+                <Button text="Prendre une photo - Recto" tap="{{ takeFrontPhoto }}" class="mb-2"/>
+                <Image src="{{ frontPhotoSource }}" height="150" class="mb-4" visibility="{{ frontPhotoSource ? 'visible' : 'collapsed' }}"/>
+                
+                <Button text="Prendre une photo - Verso" tap="{{ takeBackPhoto }}" class="mb-2"/>
+                <Image src="{{ backPhotoSource }}" height="150" class="mb-4" visibility="{{ backPhotoSource ? 'visible' : 'collapsed' }}"/>
+                
+                <Button text="Soumettre" tap="{{ submitDocuments }}" class="action-button" isEnabled="{{ canSubmitDocuments }}"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

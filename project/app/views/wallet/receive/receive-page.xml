@@ -1,0 +1,24 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="page">
+    <ActionBar title="Recevoir des Bitcoin" class="action-bar">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="qr-container p-4 bg-white rounded-lg">
+                <Image src="{{ qrCodeImage }}" width="250" height="250" class="qr-code"/>
+                <Label text="{{ address }}" textWrap="true" class="address-text text-center mt-4"/>
+                <Button text="Copier l'adresse" tap="{{ copyAddress }}" class="btn-primary mt-4"/>
+            </StackLayout>
+
+            <StackLayout class="info-container mt-4">
+                <Label text="Instructions" class="text-lg font-bold mb-2"/>
+                <Label text="1. Partagez cette adresse avec l'expéditeur" class="text-base mb-2"/>
+                <Label text="2. Attendez que les Bitcoin soient envoyés" class="text-base mb-2"/>
+                <Label text="3. La transaction apparaîtra dans votre historique" class="text-base"/>
+            </StackLayout>
+
+            <Button text="Partager l'adresse" tap="{{ shareAddress }}" class="btn-secondary mt-4"/>
+        </StackLayout>
+    </ScrollView>
+</Page>

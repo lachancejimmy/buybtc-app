@@ -1,0 +1,39 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Sécurité" class="bg-blue-600 text-white">
+        <NavigationButton text="Retour"/>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="card">
+                <Label text="Authentification" class="text-xl font-bold mb-4"/>
+                
+                <GridLayout columns="*, auto" class="mb-4">
+                    <Label text="Authentification biométrique" col="0"/>
+                    <Switch checked="{{ biometricEnabled }}" col="1" tap="{{ toggleBiometric }}"/>
+                </GridLayout>
+                
+                <Button text="Changer le mot de passe" tap="{{ changePassword }}" class="mb-2"/>
+                <Button text="Configurer le code PIN" tap="{{ setupPIN }}" class="mb-2"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Portefeuille" class="text-xl font-bold mb-4"/>
+                <Button text="Sauvegarder la phrase de récupération" tap="{{ backupWallet }}" class="mb-2"/>
+                <Button text="Vérifier la phrase de récupération" tap="{{ verifyBackup }}" class="mb-2"/>
+            </StackLayout>
+
+            <StackLayout class="card mt-4">
+                <Label text="Appareils connectés" class="text-xl font-bold mb-4"/>
+                <ListView items="{{ connectedDevices }}" height="200">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="p-2">
+                            <Label text="{{ deviceName }}" col="0"/>
+                            <Button text="Déconnecter" tap="{{ disconnectDevice }}" col="1" data-device-id="{{ deviceId }}"/>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

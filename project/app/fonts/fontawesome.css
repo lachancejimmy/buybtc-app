@@ -1,0 +1,28 @@
+.fas {
+    font-family: "FontAwesome";
+}
+
+.fa-home:before {
+    content: "\f015";
+}
+.fa-wallet:before {
+    content: "\f555";
+}
+.fa-money-bill:before {
+    content: "\f0d6";
+}
+.fa-exchange:before {
+    content: "\f0ec";
+}
+.fa-user:before {
+    content: "\f007";
+}
+.fa-bell:before {
+    content: "\f0f3";
+}
+.fa-shopping-cart:before {
+    content: "\f07a";
+}
+.fa-dollar-sign:before {
+    content: "\f155";
+}

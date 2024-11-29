@@ -1,0 +1,38 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ 'wallet.setup' | translate }}" class="bg-blue-600 text-white">
+        <NavigationButton text="{{ 'common.back' | translate }}"/>
+    </ActionBar>
+
+    <StackLayout class="p-4">
+        <StackLayout class="card">
+            <Label text="{{ 'wallet.chooseOption' | translate }}" class="text-xl font-bold mb-4"/>
+            
+            <Button text="{{ 'wallet.create' | translate }}" 
+                    tap="{{ createWallet }}" 
+                    class="action-button mb-2"/>
+            
+            <Button text="{{ 'wallet.import' | translate }}" 
+                    tap="{{ showImportWallet }}" 
+                    class="action-button"/>
+        </StackLayout>
+
+        <StackLayout class="card mt-4" visibility="{{ isImporting ? 'visible' : 'collapsed' }}">
+            <Label text="{{ 'wallet.enterMnemonic' | translate }}" class="text-lg mb-2"/>
+            <TextView hint="{{ 'wallet.mnemonicPlaceholder' | translate }}" 
+                      text="{{ mnemonic }}" 
+                      class="input mb-4"/>
+            <Button text="{{ 'common.confirm' | translate }}" 
+                    tap="{{ importWallet }}" 
+                    class="action-button"/>
+        </StackLayout>
+
+        <StackLayout class="card mt-4" visibility="{{ showBackup ? 'visible' : 'collapsed' }}">
+            <Label text="{{ 'wallet.backup' | translate }}" class="text-xl font-bold mb-2"/>
+            <Label text="{{ 'wallet.backupWarning' | translate }}" class="text-red-500 mb-4"/>
+            <Label text="{{ backupPhrase }}" textWrap="true" class="p-4 bg-gray-100 rounded"/>
+            <Button text="{{ 'common.confirm' | translate }}" 
+                    tap="{{ confirmBackup }}" 
+                    class="action-button mt-4"/>
+        </StackLayout>
+    </StackLayout>
+</Page>

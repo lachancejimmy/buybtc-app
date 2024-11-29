@@ -1,0 +1,41 @@
+/* Styles personnalisés */
+.hero {
+    background-image: linear-gradient(135deg, #1a365d 0%, #2563eb 100%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1,
+.hero p,
+.hero .flex {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.hero p {
+    animation-delay: 0.2s;
+}
+
+.hero .flex {
+    animation-delay: 0.4s;
+}
+
+/* Hover effects */
+.action-button:hover {
+    transform: translateY(-2px);
+    transition: transform 0.2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .hero {
+        text-align: center;
+    }
+    
+    .hero .flex {
+        justify-content: center;
+    }
+}
